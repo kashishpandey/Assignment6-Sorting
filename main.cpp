@@ -13,6 +13,7 @@ int main(int argc, char **argv){
     cout << "Timings for sorting algorthims" << endl;
     cout << "------------------------------" << endl;
 
+    s-> sampleFile(1000);
     s->qsTime();
     s->msTime();
     s-> bsTime();

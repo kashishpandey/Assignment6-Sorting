@@ -18,6 +18,39 @@ Sorter::~Sorter(){
   delete num;
 }
 
+void Sorter::fileIntoArray(){
+    ifstream myfile(fileName);
+    string line;
+    if(myfile.is_open()){
+      getline(myfile, line);
+      numSize = stoi(line);
+      num = new double[numSize]{};
+      int current = 0;
+      while(getline(myfile, line)){
+        num[current] = stod(line);
+        current ++;
+      }
+      myfile.close();
+    }
+  }
+
+  double Sorter::numberGen(double minimum, double maximum){
+    double x = ((double) rand() / RAND_MAX);
+    return minimum + x * (maximum - minimum);
+  }
+
+  void Sorter::sampleFile(int size){
+    outFile.open("sample.txt");
+    for(int i = 0; i < size + 1; ++i){
+      double randDouble = numberGen(0, 1000);
+      if(i == 0)
+        outFile << size << endl;
+      else
+        outFile << randDouble << endl;
+    }
+    outFile.close();
+  }
+
 // quick sort
 void Sorter::QuickSort(){
   double *sortedNum = new double[numSize]{};
@@ -54,6 +87,7 @@ void Sorter::qs(double *sortedNum, int lowI, int highI){
     Swapping(&sortedNum[lowIndex], &sortedNum[highI]);
     return lowIndex;
   }
+
 
 // quick sort timing
   void Sorter::qsTime(){
@@ -161,7 +195,7 @@ void Sorter::qs(double *sortedNum, int lowI, int highI){
       sortedNum[i] = num[i];
     }
     for(int i = 0; i <= numSize-1; ++i){
-      for(int j=i+1; j < numSize; ++j){
+      for(int j= i+1; j < numSize; ++j){
         if(sortedNum[i] > sortedNum[j])
         {
           int t = sortedNum[i];
@@ -184,7 +218,7 @@ void Sorter::qs(double *sortedNum, int lowI, int highI){
     SelectionSort();
     clock_t endTime = clock();
     cout << "End time: " << endTime << endl;
-    double duration = ((double)(endTime-startTime))/CLOCKS_PER_SEC;
+    double duration = ((double)(endTime - startTime))/CLOCKS_PER_SEC;
     cout << "Total Duration: " << duration << " seconds" << endl;
   }
 
@@ -199,7 +233,7 @@ void Sorter::qs(double *sortedNum, int lowI, int highI){
     for (int i = 0; i < numSize; ++ i){
       key = sortedNum[i];
       j = i;
-      while( j > 0 && sortedNum[j-1]>key){
+      while( j > 0 && sortedNum[j-1] > key){
         sortedNum[j] = sortedNum[j-1];
         j--;
       }
@@ -219,7 +253,7 @@ void Sorter::qs(double *sortedNum, int lowI, int highI){
     InsertionSort();
     clock_t endTime = clock();
     cout << "End time: " << endTime << endl;
-    double duration = ((double)(endTime-startTime))/CLOCKS_PER_SEC;
+    double duration = ((double)(endTime - startTime))/CLOCKS_PER_SEC;
     cout << "Total Duration: " << duration << " seconds" << endl;
   }
 
@@ -230,7 +264,7 @@ void Sorter::BubbleSort(){
     sortedNum[i] = num[i];
   }
   bool isSwapped;
-  for (int i =0; i < numSize; ++i){
+  for (int i = 0; i < numSize; ++i){
     isSwapped = false;
     for (int j = 0; j < numSize - i- 1; j ++){
       // elements are swapped if j is greater than the sucessor
@@ -257,22 +291,6 @@ void Sorter::bsTime(){
   BubbleSort();
   clock_t endTime = clock();
   cout << "End Time: " << endTime << endl;
-  double duration = ((double)(endTime-startTime))/CLOCKS_PER_SEC;
+  double duration = ((double)(endTime - startTime))/CLOCKS_PER_SEC;
   cout << "Total Duration: " << duration << " seconds" << endl;
 }
-
-void Sorter::fileIntoArray(){
-    ifstream myfile(fileName);
-    string line;
-    if(myfile.is_open()){
-      getline(myfile, line);
-      numSize = stoi(line);
-      num = new double[numSize]{};
-      int current = 0;
-      while(getline(myfile, line)){
-        num[current] = stod(line);
-        current ++;
-      }
-      myfile.close();
-    }
-  }

@@ -12,6 +12,7 @@ Sorter.cpp
 main.cpp
 Makefile
 nums.txt
+sample.txt
 pandeyA6writeup.pdf
 
 How this program compiles:

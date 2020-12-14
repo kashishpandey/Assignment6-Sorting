@@ -26,9 +26,11 @@ class Sorter{
     void bsTime();
 
     void fileIntoArray();
+    double numberGen(double min, double max);
+    void sampleFile(int size);
+
     void Swapping(double*a, double*b);
     int Partition(double *sortedNum, int lowI, int highI);
-
 
     private:
       double *num;
@@ -36,4 +38,7 @@ class Sorter{
       int numSize;
       // text file containing a list of double values
       string fileName;
+
+      //ifstream inFile;
+      ofstream outFile;
   };
