@@ -11,9 +11,15 @@ Sorter.h
 Sorter.cpp
 main.cpp
 Makefile
-nums.txt
-sample.txt
+nums.txt // file already with numbers in it
+genNumbers.txt // randomly generated file
 pandeyA6writeup.pdf
+
+Other:
+To generate a file run: ./assignment6.exe genNumbers.txt
+Line 1 of the file should be the total number of doubles you would like to generate
+In main switch 'size': s-> sampleFile(size); to the desired number as well
+To run a normal file with doubles already given just enter the text file name after ./assignment6.exe
 
 How this program compiles:
 

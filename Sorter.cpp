@@ -11,6 +11,7 @@ Sorter::Sorter(){}
 // overloaded constructor
 Sorter::Sorter(string fileName){
   fileName = fileName;
+  fileIntoArray();
 }
 
 // destructor
@@ -34,15 +35,18 @@ void Sorter::fileIntoArray(){
     }
   }
 
+// randomly generating numbers for the text file
   double Sorter::numberGen(double minimum, double maximum){
     double x = ((double) rand() / RAND_MAX);
     return minimum + x * (maximum - minimum);
   }
 
+// making text file with randomly generated numbers --> genNumbers.txt
   void Sorter::sampleFile(int size){
-    outFile.open("sample.txt");
+    outFile.open("genNumbers.txt");
     for(int i = 0; i < size + 1; ++i){
-      double randDouble = numberGen(0, 1000);
+      // generating numbers between 0 and 100
+      double randDouble = numberGen(0, 100);
       if(i == 0)
         outFile << size << endl;
       else
@@ -68,12 +72,13 @@ void Sorter::qs(double *sortedNum, int lowI, int highI){
   }
 }
 // swapping pointers (using for Partition)
-  void Sorter::Swapping(double* a, double* b){
-    double temp = *a;
-    *a = *b;
-    *b = temp;
+  void Sorter::Swapping(double* a1, double* a2){
+    double temp = *a1;
+    *a1 = *a2;
+    *a2 = temp;
   }
 
+// partioning for quicksort
   int Sorter::Partition(double *sortedNum, int lowI, int highI){
     // middle element = pivot
     int pivot = sortedNum[highI];
@@ -95,11 +100,15 @@ void Sorter::qs(double *sortedNum, int lowI, int highI){
     cout << "---------------" << endl;
     cout << "Quick Sort" << endl;
     cout << "---------------" << endl;
+
     clock_t startTime = clock();
     cout << "Start Time: " << startTime << endl;
+
     QuickSort();
+
     clock_t endTime = clock();
     cout << "End time: " << endTime << endl;
+
     double duration = ((double)(endTime-startTime))/CLOCKS_PER_SEC;
     cout << "Total duration: " << duration << " seconds" << endl;
   }
@@ -179,11 +188,15 @@ void Sorter::qs(double *sortedNum, int lowI, int highI){
     cout << "---------------" << endl;
     cout << "Merge Sort" << endl;
     cout << "---------------" << endl;
+
     clock_t startTime = clock();
     cout << "Start Time: " << startTime << endl;
+
     MergeSort();
+
     clock_t endTime = clock();
     cout << "End time: " << endTime << endl;
+
     double duration = ((double)(endTime-startTime))/CLOCKS_PER_SEC;
     cout << "Total duration: " << duration << " seconds" << endl;
   }
@@ -213,11 +226,15 @@ void Sorter::qs(double *sortedNum, int lowI, int highI){
     cout << "---------------" << endl;
     cout << "Selection Sort" << endl;
     cout << "---------------" << endl;
+
     clock_t startTime = clock();
     cout << "Start Time: " << startTime << endl;
+
     SelectionSort();
+
     clock_t endTime = clock();
     cout << "End time: " << endTime << endl;
+
     double duration = ((double)(endTime - startTime))/CLOCKS_PER_SEC;
     cout << "Total Duration: " << duration << " seconds" << endl;
   }
@@ -248,11 +265,15 @@ void Sorter::qs(double *sortedNum, int lowI, int highI){
     cout << "---------------" << endl;
     cout << "Insertion Sort" << endl;
     cout << "---------------" << endl;
+
     clock_t startTime = clock();
     cout << "Start Time: " << startTime << endl;
+
     InsertionSort();
+
     clock_t endTime = clock();
     cout << "End time: " << endTime << endl;
+    
     double duration = ((double)(endTime - startTime))/CLOCKS_PER_SEC;
     cout << "Total Duration: " << duration << " seconds" << endl;
   }
@@ -286,11 +307,15 @@ void Sorter::bsTime(){
   cout << "---------------" << endl;
   cout << "Bubble Sort" << endl;
   cout << "---------------" << endl;
+
   clock_t startTime = clock();
   cout << "Start Time: " << startTime << endl;
+
   BubbleSort();
+
   clock_t endTime = clock();
   cout << "End Time: " << endTime << endl;
+
   double duration = ((double)(endTime - startTime))/CLOCKS_PER_SEC;
   cout << "Total Duration: " << duration << " seconds" << endl;
 }
